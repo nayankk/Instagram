@@ -34,7 +34,7 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
         if (photo.userName != null) tvUsername.setText(photo.userName);
         // Clear out the imageview
         ivPhoto.setImageResource(0);
-        Picasso.with(getContext()).load(photo.imageUrl).into(ivPhoto);
+        Picasso.with(getContext()).load(photo.imageUrl).placeholder(R.drawable.image_area).into(ivPhoto);
         Picasso.with(getContext()).load(photo.avatarUrl).into(ivAvatar);
         if (photo.location != null && !photo.location.isEmpty()) {
             ViewGroup vg = (ViewGroup)convertView.findViewById(R.id.location);
