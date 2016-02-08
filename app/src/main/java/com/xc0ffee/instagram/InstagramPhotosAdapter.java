@@ -1,6 +1,7 @@
 package com.xc0ffee.instagram;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,12 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
         }
         TextView likesCntView = (TextView) convertView.findViewById(R.id.tv_likesCount);
         likesCntView.setText(photo.likesCount + " likes");
+
+        TextView comment1 = (TextView) convertView.findViewById(R.id.tv_comment1);
+        comment1.setText(Html.fromHtml(photo.comment1));
+
+        TextView comment2 = (TextView) convertView.findViewById(R.id.tv_comment2);
+        comment2.setText(Html.fromHtml(photo.comment2));
 
         return convertView;
     }

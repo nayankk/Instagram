@@ -9,4 +9,6 @@ public class InstagramPhoto {
     public int likesCount;
     public String avatarUrl;
     public String location;
+    public String comment1;
+    public String comment2;
 }

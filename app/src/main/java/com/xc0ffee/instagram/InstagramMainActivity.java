@@ -78,8 +78,18 @@ public class InstagramMainActivity extends AppCompatActivity {
                         if (!obj.isNull("location")) {
                             JSONObject locaton = obj.getJSONObject("location");
                             photo.location = locaton.getString("name");
-                            Log.d("NAYAN", "location = " + photo.location);
                         }
+
+                        JSONObject commentObj = obj.getJSONObject("comments");
+                        JSONArray commentArray = commentObj.getJSONArray("data");
+                        String comment1 = commentArray.getJSONObject(0).getString("text");
+                        String comment1User = commentArray.getJSONObject(0).getJSONObject("from").getString("username");
+                        photo.comment1 = "<b>" + comment1User + "</b>  " + comment1;
+
+                        String comment2 = commentArray.getJSONObject(1).getString("text");
+                        String comment2User = commentArray.getJSONObject(0).getJSONObject("from").getString("username");
+                        photo.comment2 = "<b>" + comment2User + "</b>  " + comment2;
+
                         photos.add(photo);
                     }
                 } catch (Exception e) {

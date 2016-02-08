@@ -95,7 +95,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@id/tv_caption"
         android:id="@+id/l_footer"
@@ -117,9 +117,43 @@
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             android:textSize="12sp"
-            android:textColor="@android:color/darker_gray"
-            android:fontFamily="sans-serif-condensed"/>
+            android:textColor="@android:color/black"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"/>
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_comment1"
+        android:paddingLeft="8dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:textSize="11sp"
+        android:textColor="@android:color/black"
+        android:fontFamily="sans-serif"
+        android:layout_below="@id/l_footer"
+        android:background="@android:color/white"
+        android:paddingTop="5dp"
+        android:ellipsize="end"
+        android:maxLines="3"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_comment2"
+        android:paddingLeft="8dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:textSize="11sp"
+        android:textColor="@android:color/black"
+        android:fontFamily="sans-serif"
+        android:layout_below="@id/tv_comment1"
+        android:background="@android:color/white"
+        android:paddingTop="5dp"
+        android:paddingBottom="4dp"
+        android:ellipsize="end"
+        android:maxLines="3"/>
 
 </RelativeLayout>
