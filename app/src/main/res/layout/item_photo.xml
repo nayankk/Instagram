@@ -1,25 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/l_header"
+        android:background="@android:color/white"
+        android:paddingBottom="4dp"
+        android:paddingTop="4dp">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/iv_avatar"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            app:riv_corner_radius="30dip"
+            app:riv_mutate_background="true"
+            app:riv_tile_mode="repeat"
+            app:riv_oval="true"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="8dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/tv_author"
+                android:textSize="14sp"
+                android:fontFamily="sans-serif"
+                android:paddingTop="2dp"
+                android:textColor="@android:color/black"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:id="@+id/location"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_map_marker_grey600_18dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_location"
+                    android:paddingLeft="4dp"
+                    android:paddingStart="4dp"
+                    android:paddingRight="4dp"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="sans-serif-condensed"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/imageView"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:adjustViewBounds="true"
-        android:scaleType="fitXY" />
+        android:scaleType="fitXY"
+        android:layout_below="@+id/l_header"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tv_caption"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@id/imageView"
         android:ellipsize="end"
-        android:maxLines="3" />
+        android:maxLines="3"
+        android:background="@android:color/white"
+        android:textColor="@android:color/black"
+        android:fontFamily="sans-serif"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:layout_below="@id/imageView"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/tv_caption"
+        android:id="@+id/l_footer"
+        android:background="@android:color/white">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/heart_red"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/tv_likesCount"
+            android:paddingTop="2dp"
+            android:paddingLeft="8dp"
+            android:layout_gravity="center_horizontal"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:textSize="12sp"
+            android:textColor="@android:color/darker_gray"
+            android:fontFamily="sans-serif-condensed"/>
+
+    </LinearLayout>
+
 </RelativeLayout>

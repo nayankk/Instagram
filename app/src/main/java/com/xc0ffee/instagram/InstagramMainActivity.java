@@ -57,12 +57,17 @@ public class InstagramMainActivity extends AppCompatActivity {
                         photo.imageUrl = obj.getJSONObject("images").getJSONObject("standard_resolution").getString("url");
                         photo.imageHeight = obj.getJSONObject("images").getJSONObject("standard_resolution").getInt("height");
                         photo.likesCount = obj.getJSONObject("likes").getInt("count");
+                        photo.avatarUrl = obj.getJSONObject("user").getString("profile_picture");
+                        if (!obj.isNull("location")) {
+                            JSONObject locaton = obj.getJSONObject("location");
+                            photo.location = locaton.getString("name");
+                            Log.d("NAYAN", "location = " + photo.location);
+                        }
                         photos.add(photo);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
                 aPhotos.notifyDataSetChanged();
             }
 

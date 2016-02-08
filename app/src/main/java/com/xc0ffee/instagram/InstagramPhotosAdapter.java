@@ -10,13 +10,8 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
-/**
- * Created by nayankk on 2/7/16.
- */
 public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
 
     // Whay data do we need from Activity
@@ -32,10 +27,23 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
         }
         TextView tvCaption = (TextView) convertView.findViewById(R.id.tv_caption);
         ImageView ivPhoto = (ImageView) convertView.findViewById(R.id.imageView);
+        TextView tvUsername = (TextView) convertView.findViewById(R.id.tv_author);
+        ImageView ivAvatar = (ImageView) convertView.findViewById(R.id.iv_avatar);
         tvCaption.setText(photo.caption);
+        tvUsername.setText(photo.userName);
         // Clear out the imageview
         ivPhoto.setImageResource(0);
         Picasso.with(getContext()).load(photo.imageUrl).into(ivPhoto);
+        Picasso.with(getContext()).load(photo.avatarUrl).into(ivAvatar);
+        if (photo.location != null && !photo.location.isEmpty()) {
+            ViewGroup vg = (ViewGroup)convertView.findViewById(R.id.location);
+            vg.setVisibility(View.VISIBLE);
+            TextView tvLocation = (TextView) convertView.findViewById(R.id.tv_location);
+            tvLocation.setText(photo.location);
+        }
+        TextView likesCntView = (TextView) convertView.findViewById(R.id.tv_likesCount);
+        likesCntView.setText(photo.likesCount + " likes");
+
         return convertView;
     }
 }
