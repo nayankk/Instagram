@@ -1,5 +1,6 @@
 package com.xc0ffee.instagram;
 
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,10 +24,21 @@ public class InstagramMainActivity extends AppCompatActivity {
 
     private InstagramPhotosAdapter aPhotos;
 
+    private SwipeRefreshLayout swipeContainer;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instagram_main);
+
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                fetchPopularPhotos();
+            }
+        });
 
         photos = new ArrayList<>();
 
@@ -39,6 +51,7 @@ public class InstagramMainActivity extends AppCompatActivity {
     }
 
     private void fetchPopularPhotos() {
+        photos.clear();
         String url = "https://api.instagram.com/v1/media/popular?client_id=" + CLIENT_ID;
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(url, null, new JsonHttpResponseHandler() {
@@ -52,8 +65,12 @@ public class InstagramMainActivity extends AppCompatActivity {
                         // Get the JSON object
                         JSONObject obj = photosJson.getJSONObject(i);
                         InstagramPhoto photo = new InstagramPhoto();
-                        photo.userName = obj.getJSONObject("user").getString("username");
-                        photo.caption = obj.getJSONObject("caption").getString("text");
+                        if (!obj.isNull("user")){
+                            photo.userName = obj.getJSONObject("user").getString("username");
+                        }
+                        if (!obj.isNull("caption")) {
+                            photo.caption = obj.getJSONObject("caption").getString("text");
+                        }
                         photo.imageUrl = obj.getJSONObject("images").getJSONObject("standard_resolution").getString("url");
                         photo.imageHeight = obj.getJSONObject("images").getJSONObject("standard_resolution").getInt("height");
                         photo.likesCount = obj.getJSONObject("likes").getInt("count");
@@ -68,6 +85,7 @@ public class InstagramMainActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                swipeContainer.setRefreshing(false);
                 aPhotos.notifyDataSetChanged();
             }
 
@@ -75,6 +93,7 @@ public class InstagramMainActivity extends AppCompatActivity {
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 Log.d("NAYAN", "onFailure: " + statusCode);
+                swipeContainer.setRefreshing(false);
             }
         });
 
