@@ -1,4 +1,4 @@
-*Instagram*is an android app that fetches the popular feeds using Instagram API's and displays them in a grid view.
+*Instagram* is an android app that fetches the popular feeds using Instagram API's and displays them in a grid view.
 
 Completed user stories:
 
